@@ -312,8 +312,8 @@ module RETS4R
 #          puts raw_data.nil?
           next unless raw_data
 
-          data_header = process_header(raw_header)
-          data_object = DataObject.new(data_header, raw_data)
+          #data_header = process_header(raw_header)
+          data_object = DataObject.new(raw_header, raw_data)
 		  
 		  #Testing SIMOZ logging to find header data
 		  @raw_header = raw_header
@@ -336,10 +336,10 @@ module RETS4R
           #end
 		  
 		  if block_given?
-            yield data_header
+            yield data_object
             results += 1
           else
-            results << data_header
+            results << data_object
           end
 		  
         end
