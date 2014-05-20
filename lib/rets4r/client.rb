@@ -301,8 +301,6 @@ module RETS4R
 		#Testing SIMOZ logging to find header data
 		@bodydata = response.body
 		Rails.logger.debug("SIMOZ body data Debug: #{@bodydata.inspect}")
-		@locationdata = response['Location']
-		Rails.logger.debug("SIMOZ location data Debug: #{@locationdata.inspect}")
 
 #        TODO: log this
 #        puts "GOT PARTS #{parts.length}"
@@ -316,6 +314,12 @@ module RETS4R
 
           data_header = process_header(raw_header)
           data_object = DataObject.new(data_header, raw_data)
+		  
+		  #Testing SIMOZ logging to find header data
+		  @data_header = data_header
+		  Rails.logger.debug("SIMOZ data_header Debug: #{@data_header.inspect}")
+		  @data_object = data_object
+		  Rails.logger.debug("SIMOZ data_object Debug: #{@data_object.inspect}")
 
           if block_given?
             yield data_object
