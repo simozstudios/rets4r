@@ -321,12 +321,22 @@ module RETS4R
 		  @data_object = data_object
 		  Rails.logger.debug("SIMOZ data_object Debug: #{@data_object.inspect}")
 
-          if block_given?
-            yield data_object
+          #if block_given?
+          #  yield data_object
+          #  results += 1
+          #else
+          #  results << data_object
+          #end
+		  
+#		  Hack to force return of header data instead of body
+#		  Ugly I know but its no longer in the RETS XML response data and I'm cheap
+		  if block_given?
+            yield data_header
             results += 1
           else
-            results << data_object
+            results << data_header
           end
+		  
         end
       else
         info = {
