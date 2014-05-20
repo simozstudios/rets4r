@@ -15,7 +15,6 @@ module RETS4R
 
       def initialize(headers, data)
         @header = ObjectHeader.new(headers) #Not showing up in final result dataobject so removing extra init
-		#@header = headers
 		Rails.logger.debug("SIMOZ @header Debug: #{@header.inspect}")
         @data = data
       end
