@@ -14,8 +14,15 @@ module RETS4R
       alias :info :type
 
       def initialize(headers, data)
+	    #Testing SIMOZ logging to find header data
+		@headers = headers
+		Rails.logger.debug("SIMOZ initialize headers Debug: #{@headers.inspect}")
+		#End test
         @header = ObjectHeader.new(headers)
         @data = data
+		#Testing SIMOZ logging to find header data
+		Rails.logger.debug("SIMOZ headers after dataobject initialize and object header initalize script : #{@header.inspect}")
+		#End test
       end
 
       def success?

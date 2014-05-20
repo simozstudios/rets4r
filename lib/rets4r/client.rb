@@ -316,10 +316,17 @@ module RETS4R
           data_object = DataObject.new(data_header, raw_data)
 		  
 		  #Testing SIMOZ logging to find header data
+		  @raw_header = raw_header
+		  Rails.logger.debug("SIMOZ raw_header Debug: #{@raw_header.inspect}")
+		  @raw_data = raw_data
+		  Rails.logger.debug("SIMOZ raw_data Debug: #{@raw_data.inspect}")
 		  @data_header = data_header
 		  Rails.logger.debug("SIMOZ data_header Debug: #{@data_header.inspect}")
 		  @data_object = data_object
 		  Rails.logger.debug("SIMOZ data_object Debug: #{@data_object.inspect}")
+
+#		  Hack to force return of header data instead of body
+#		  Ugly I know but its no longer in the RETS XML response data and I'm cheap
 
           #if block_given?
           #  yield data_object
@@ -328,8 +335,6 @@ module RETS4R
           #  results << data_object
           #end
 		  
-#		  Hack to force return of header data instead of body
-#		  Ugly I know but its no longer in the RETS XML response data and I'm cheap
 		  if block_given?
             yield data_header
             results += 1
