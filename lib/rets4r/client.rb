@@ -297,6 +297,12 @@ module RETS4R
         parts = response.body.split("\r\n--#{boundary}")
 
         parts.shift # Get rid of the initial boundary
+		
+		#Testing SIMOZ logging to find header data
+		@bodydata = response.body
+		Rails.logger.debug("SIMOZ body data Debug: #{@bodydata.inspect}")
+		@locationdata = response['Location']
+		Rails.logger.debug("SIMOZ location data Debug: #{@locationdata.inspect}")
 
 #        TODO: log this
 #        puts "GOT PARTS #{parts.length}"
