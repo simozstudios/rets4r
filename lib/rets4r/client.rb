@@ -297,10 +297,6 @@ module RETS4R
         parts = response.body.split("\r\n--#{boundary}")
 
         parts.shift # Get rid of the initial boundary
-		
-		#Testing SIMOZ logging to find header data
-		@bodydata = response.body
-		Rails.logger.debug("SIMOZ body data Debug: #{@bodydata.inspect}")
 
 #        TODO: log this
 #        puts "GOT PARTS #{parts.length}"
@@ -313,7 +309,7 @@ module RETS4R
           next unless raw_data
 
 		  #Hacked to provide raw_header instead of processing. Also modified dataobject to feed raw headers
-          #data_header = process_header(raw_header)
+		  #data_header = process_header(raw_header)
           data_object = DataObject.new(raw_header, raw_data)
 		  
 		  if block_given?
@@ -322,7 +318,6 @@ module RETS4R
           else
             results << data_object
           end
-		  
         end
       else
         info = {
