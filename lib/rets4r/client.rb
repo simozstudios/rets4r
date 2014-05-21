@@ -312,28 +312,9 @@ module RETS4R
 #          puts raw_data.nil?
           next unless raw_data
 
-          data_header = process_header(raw_header)
+		  #Hacked to provide raw_header instead of processing. Also modified dataobject to feed raw headers
+          #data_header = process_header(raw_header)
           data_object = DataObject.new(raw_header, raw_data)
-		  
-		  #Testing SIMOZ logging to find header data
-		  @raw_header = raw_header
-		  Rails.logger.debug("SIMOZ raw_header Debug: #{@raw_header.inspect}")
-		  @raw_data = raw_data
-		  Rails.logger.debug("SIMOZ raw_data Debug: #{@raw_data.inspect}")
-		  @data_header = data_header
-		  Rails.logger.debug("SIMOZ data_header Debug: #{@data_header.inspect}")
-		  @data_object = data_object
-		  Rails.logger.debug("SIMOZ data_object Debug: #{@data_object.inspect}")
-
-#		  Hack to force return of header data instead of body
-#		  Ugly I know but its no longer in the RETS XML response data and I'm cheap
-
-          #if block_given?
-          #  yield data_object
-          #  results += 1
-          #else
-          #  results << data_object
-          #end
 		  
 		  if block_given?
             yield data_object

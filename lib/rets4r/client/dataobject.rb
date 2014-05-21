@@ -14,11 +14,10 @@ module RETS4R
       alias :info :type
 
       def initialize(headers, data)
-        #@header = ObjectHeader.new(headers) #Not showing up in final result dataobject so removing extra init
+        # @header = ObjectHeader.new(headers) #Not showing up dataobject 
+		# result so removing and providing raw headers to parse later
 		@header = headers
-		Rails.logger.debug("SIMOZ @header Debug: #{@header.inspect}")
         @data = data
-		Rails.logger.debug("SIMOZ @data Debug: #{@data.inspect}")
       end
 
       def success?
